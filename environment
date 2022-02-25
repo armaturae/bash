@@ -27,7 +27,7 @@ export LC_ALL=en_US.UTF-8
 export PATH=${PATH}:${HOME}/.utils
 
 # Editor
-if [ type -P nvim ]; then
+if [ -x "$(command -v nvim)" ]; then
         export VISUAL=nvim
 else
         export VISUAL=vi
@@ -35,39 +35,39 @@ fi
 export EDITOR="$VISUAL"
 
 # Pager
-if [ type -P bat ]; then
+if [ -x "$(command -v bat)" ]; then
         PAGER=bat
 fi
 
 # Taskwarrior
-if [ type -P task ]; then
+if [ -x "$(command -v task)" ]; then
         export TASKWARRIOR_DATA_DIR=$HOME/.task
 fi
 
 # Weechat
-if [ type -P weechat ]; then
+if [ -x "$(command -v weechat)" ]; then
         export IRC_CLIENT="weechat"
         export IRC_NICKNAME="$USER"
 fi
 
 # Zoxide
-if [ type -P zoxide ]; then
+if [ -x "$(command -v zoxide)" ]; then
         eval "$(zoxide init bash)"
 fi
 
 # Alacritty
-if [ type -P alacritty ]; then
+if [ -x "$(command -v alacritty)" ]; then
         export LIBGL_ALWAYS_SOFTWARE=1
 fi
 
 # Gopass
-if [ type -P gopass ]; then
+if [ -x "$(command -v gopass )" ]; then
         source <(gopass completion bash)
 fi
 
 # fzf
-if [ type -P fzf ]; then
-        source /usr/share/fzf/key-bindings.bash
+if [ -x "$(command -v fzf)" ]; then
+        source "${HOME}/.bash_completion.d/fzf.bash-completion"
 fi
 
 # GnuPG
@@ -83,7 +83,7 @@ export DOTFILES="${HOME}/.dotfiles"
 export OPENVPN_PROFILE_DIR="${HOME}/.openvpn"
 
 # Transmissions
-if [ type -P transmission-daemon ]; then
+if [ -x "$(command -v transmission-daemon)" ]; then
         export TRANSMISSION_HOST="0.0.0.0"
         export TRANSMISSION_PORT="9091"
 fi
@@ -95,7 +95,7 @@ export WALLPAPER_DIR="${HOME}/.wallpapers"
 export PLATFORM="$(uname -a | cut -d ' ' -f 1 | awk '{print tolower($0)}')"
 
 # pythons' virtualenvwrapper
-if [ type -P virtualenvwrapper.sh ]; then
+if [ -x "$(command -v virtualenvwrapper.sh)" ]; then
         export WORKON_HOME="${HOME}/.virtualenvs"
         export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python"
         source $(which virtualenvwrapper.sh)
