@@ -1,0 +1,9 @@
+source-completion () {
+    for completion in ~/.bash_completion.d/* ; do
+        . $completion
+    done
+}
+
+get-iso-week() {
+    echo $(echo 'import datetime; print(datetime.datetime.now().isocalendar()[1], end="")' | python3)
+}

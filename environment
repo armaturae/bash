@@ -1,0 +1,118 @@
+#!/bin/bash
+
+# Python
+# Python should not write bytecode
+export PYTHONDONTWRITEBYTECODE=1
+
+# Go
+export GOPATH=${HOME}/.go
+export PATH="${PATH}:${GOPATH}/bin"
+
+# Rust
+export PATH="$PATH:${HOME}/.cargo/bin"
+touch ${HOME}/.cargo/env
+source ${HOME}/.cargo/env
+
+# GCC
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# User binary path
+export PATH=${PATH}:${HOME}/.local/bin
+
+# Locale
+export LC_ALL=en_US.UTF-8
+
+# Utilities path
+export PATH=${PATH}:${HOME}/.utils
+
+# Editor
+if [ type -P nvim ]; then
+        export VISUAL=nvim
+else
+        export VISUAL=vi
+fi
+export EDITOR="$VISUAL"
+
+# Pager
+if [ type -P bat ]; then
+        PAGER=bat
+fi
+
+# Taskwarrior
+if [ type -P task ]; then
+        export TASKWARRIOR_DATA_DIR=$HOME/.task
+fi
+
+# Weechat
+if [ type -P weechat ]; then
+        export IRC_CLIENT="weechat"
+        export IRC_NICKNAME="$USER"
+fi
+
+# Zoxide
+if [ type -P zoxide ]; then
+        eval "$(zoxide init bash)"
+fi
+
+# Alacritty
+if [ type -P alacritty ]; then
+        export LIBGL_ALWAYS_SOFTWARE=1
+fi
+
+# Gopass
+if [ type -P gopass ]; then
+        source <(gopass completion bash)
+fi
+
+# fzf
+if [ type -P fzf ]; then
+        source /usr/share/fzf/key-bindings.bash
+fi
+
+# GnuPG
+export GPG_TTY=$(tty)
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+gpg-connect-agent updatestartuptty /bye
+
+# Dotfiles
+export DOTFILES="${HOME}/.dotfiles"
+
+# OpenVPN
+export OPENVPN_PROFILE_DIR="${HOME}/.openvpn"
+
+# Transmissions
+if [ type -P transmission-daemon ]; then
+        export TRANSMISSION_HOST="0.0.0.0"
+        export TRANSMISSION_PORT="9091"
+fi
+
+# for rotating wallpapers
+export WALLPAPER_DIR="${HOME}/.wallpapers"
+
+# get platform in lowercase
+export PLATFORM="$(uname -a | cut -d ' ' -f 1 | awk '{print tolower($0)}')"
+
+# pythons' virtualenvwrapper
+if [ type -P virtualenvwrapper.sh ]; then
+        export WORKON_HOME="${HOME}/.virtualenvs"
+        export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python"
+        source $(which virtualenvwrapper.sh)
+fi
+
+# aws-vault
+complete -C aws_completer aws-vault
+export AWS_VAULT_PROMPT=terminal
+export AWS_VAULT_BACKEND=pass
+
+
+# Starship
+export STARSHIP_CONFIG="${HOME}/.config/starship.toml"
+eval "$(starship init bash)"
+
+# Kubectl plugins
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# NPM
+export NODE_PATH=$HOME/.npm

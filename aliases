@@ -1,0 +1,53 @@
+alias vim='nvim'
+alias sl="ls"
+alias ll="ls -lah"
+alias c='clear'
+alias cdp="cd ~/Projects"
+alias opwd="cd $OLDPWD"
+
+alias source-aliases=". $HOME/.aliases"
+alias source-functions="source $HOME/.functions"
+alias source-variables="source $HOME/.variables"
+alias source-bashrc='source ${HOME}/.bashrc'
+alias rebuild-assh='assh config build > ~/.ssh/config'
+
+alias edit-packages="vim $HOME/.packages"
+alias edit-dotfiles="vim $HOME/.dotfiles"
+alias edit-aliases="vim $HOME/.aliases"
+alias edit-functions='vim ${HOME}/.functions'
+alias edit-environment='vim $HOME/.environment'
+alias edit-gitconfig='vim ${HOME}/.gitconfig'
+alias edit-bashrc='vim ${HOME}/.bashrc'
+alias edit-assh='vim ~/.ssh/assh.yml'
+alias edit-neovim='vim ${HOME}/.config/nvim/init.vim'
+
+alias get-image-size='identify -format "%wx%h"'
+alias get-image-aspect-ratio='identify -format "%[fx:w/h]"'
+
+alias gita="python3 -m gita"
+
+alias b='buku --suggest'
+
+alias wq="wmctrl -r 'Alacritty' -b toggle,fullscreen"
+
+# tmux
+alias tmuxp-load="tmuxp load $HOME/.tmux/tmuxp.*.yaml"
+
+# newsboat (rss)
+alias rss='newsboat --url-file ~/.rss-feeds/urls'
+alias edit-newsboat='nvim ~/.newsboat/urls'
+
+# gopass
+alias pass='gopass'
+alias source-secrets='source <(pass show env)'
+
+# startx
+alias startverbosex='startx -- -logverbose 6'
+
+alias whatsmyip='dig +short myip.opendns.com @resolver1.opendns.com -4'
+alias t='task +w$(get-iso-week)'
+alias dotlink="dotbot -d $DOTFILES_DIR -c dotbot.conf.yml"
+alias vim-plugin-update='vim +PlugInstall +qall'
+alias torrent-clipboard='transmission-remote $TRANSMISSION_HOST:$TRANSMISSION_PORT --add "$(xclip -sel clipboard -o)"'
+alias maimi='maim -s /dev/stdout | xclip -sel clipboard -i'
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
