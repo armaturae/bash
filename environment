@@ -68,7 +68,7 @@ fi
 # fzf
 if [ -x "$(command -v fzf)" ]; then
         source "${HOME}/.bash_completion.d/fzf.bash-completion"
-        source "${HOME}/.fzf/key-bindings.bash"
+        source "${HOME}/.fzf/shell/key-bindings.bash"
 fi
 
 # GnuPG
