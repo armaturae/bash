@@ -1,0 +1,12 @@
+- defaults:
+    link:
+        relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.bash_profile: bash_profile
+    ~/.bashrc: bashrc
+    ~/.aliases: aliases
+    ~/.functions: functions
+    ~/.environment: environment
