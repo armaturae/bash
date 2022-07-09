@@ -26,6 +26,9 @@ export LC_ALL=en_US.UTF-8
 # Utilities path
 export PATH=${PATH}:${HOME}/.utils
 
+# Project directory
+export PROJECTS=${HOME}/Projects
+
 # Editor
 if [ -x "$(command -v nvim)" ]; then
         export VISUAL=nvim
@@ -63,6 +66,8 @@ fi
 # Gopass
 if [ -x "$(command -v gopass )" ]; then
         source <(gopass completion bash)
+        # For aws-vault
+        export AWS_VAULT_PASS_PASSWORD_STORE_DIR="$(gopass config | awk '$1 ~ /path/ {print $2}')/aws-vault"
 fi
 
 # fzf
@@ -117,3 +122,8 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # NPM
 export NODE_PATH=$HOME/.npm
+
+# Terragrunt tgenv
+if [ -d "~/.tgenv" ]; then
+    export PATH="$HOME/.tgenv/bin:$PATH"
+fi
