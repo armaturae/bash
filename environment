@@ -127,3 +127,8 @@ export NODE_PATH=$HOME/.npm
 if [ -d "~/.tgenv" ]; then
     export PATH="$HOME/.tgenv/bin:$PATH"
 fi
+
+# Terragrunt tgenv
+if [ -d "~/.tfenv" ]; then
+    export PATH="$HOME/.tfenv/bin:$PATH"
+fi
