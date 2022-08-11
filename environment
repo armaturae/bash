@@ -132,3 +132,7 @@ fi
 if [ -d "~/.tfenv" ]; then
     export PATH="$HOME/.tfenv/bin:$PATH"
 fi
+
+if [ -x "$(command -v rofi)" ]; then
+    export ROFI_TERMINAL=\"${TERMINAL:-/usr/bin/alacritty}\"
+fi
